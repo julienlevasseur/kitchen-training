@@ -1,0 +1,27 @@
+driver:
+  name: terraform
+  root_module_directory: test/fixtures/wrapper
+
+provisioner:
+  name: terraform
+
+verifier:
+  name: inspec
+  #host: 127.0.0.1
+  #groups:
+  #  - name: kitchen-training
+  #    controls:
+  #      - infratructure
+
+platforms:
+  - name: aws
+
+suites:
+  - name: default
+    verifier:
+      groups:
+        - name: terraform
+          attributes:
+            bucket_name: static_terraform_output
+          controls:
+            - default
